@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{text}}</h1>
+{% for item in wallpapers%}
+<div class="col-md6 border rounded">
+    <div>
+    <img src="/static/img/{{item.file}}" width="270" height="180" alt="здесь должна быть картинка">
+        <nav><a href="/static/img/{{item.file}}" download="{{item.file}}"><h2> {{item.title}}</h2></a></nav>
+        <ul class="hr">
+            {% for elem in item.content.lower().replace(',', '').split() %}
+                <li> <a class="navbar-brand" href="/show_tags/{{elem}}">{{elem}}</a></li>
+            {% endfor %}
+        </ul>
+        Автор - <a class="navbar-brand" href="/show_user/{{item.user.id}}">{{item.user.name}}</a>
+        Дата  - {{item.created_date}}
+        {% if current_user.is_authenticated and current_user == item.user %}
+    <div>
+        <a href="/wallpapers_delete/{{ item.id }}" class="btn btn-danger">
+            Удалить
+        </a>
+    </div>
+{% endif %}
+
+    </div>
+
+</div>
+{% endfor %}
+{% endblock %}

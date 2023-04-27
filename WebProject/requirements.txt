@@ -1,0 +1,10 @@
+python
+Flask
+Flask-Login
+Flask-WTF
+Pillow
+SQLAlchemy
+SQLAlchemy-serializer
+WTForms
+Werkzeug
+pip
